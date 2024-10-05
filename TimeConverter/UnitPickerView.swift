@@ -8,7 +8,7 @@ struct UnitPickerView: View {
             ForEach(TimeUnits.allCases, id: \.self) { unit in
                 Text(unit.rawValue)
             }
-        }.pickerStyle(.wheel)
+        }.pickerStyle(.segmented)
     }
 }
 
