@@ -1,8 +1,9 @@
-//
-//  TimeUnits.swift
-//  TimeConverter
-//
-//  Created by Michael on 04.10.24.
-//
-
 import Foundation
+
+enum TimeUnits: String, CaseIterable {
+    case seconds = "Seconds"
+    case minutes = "Minutes"
+    case hours = "Hours"
+    case days = "Days"
+}
+

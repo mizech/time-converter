@@ -1,18 +1,17 @@
-//
-//  UnitPickerView.swift
-//  TimeConverter
-//
-//  Created by Michael on 04.10.24.
-//
-
 import SwiftUI
 
 struct UnitPickerView: View {
+    @Binding var selectedUnit: TimeUnits
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Picker("Please selected the input-unit", selection: $selectedUnit) {
+            ForEach(TimeUnits.allCases, id: \.self) { unit in
+                Text(unit.rawValue)
+            }
+        }.pickerStyle(.wheel)
     }
 }
 
 #Preview {
-    UnitPickerView()
+    UnitPickerView(selectedUnit: .constant(TimeUnits.days))
 }
