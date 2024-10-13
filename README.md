@@ -1,2 +1,3 @@
-# time-converter
-iOS Time-Converter App
+# iOS Time-Converter App
+Converts time-values: from/to seconds, minutes, hours, days.
+
