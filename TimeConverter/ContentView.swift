@@ -3,17 +3,13 @@ import SwiftUI
 struct ContentView: View {
     @State private var selectedInput = TimeUnits.seconds
     @State private var selectedOutput = TimeUnits.seconds
-    @State private var inputValue = ""
+    @State private var inputValue: Double? = nil
     @State private var outputValue = 0.0
     
     func convertInput() {
-        guard inputValue.isEmpty == false else {
-            return
-        }
+        outputValue = inputValue ?? 0.0
         
-        if var inputValue = Double(inputValue) {
-            outputValue = inputValue
-            
+        if var inputValue = inputValue {
             switch selectedInput {
                 case .seconds:
                     break
@@ -35,8 +31,6 @@ struct ContentView: View {
                 case .days:
                     outputValue = inputValue / (60.0 * 60.0 * 24.0)
             }
-        } else {
-            print("Failed converting to double")
         }
     }
     
@@ -46,11 +40,12 @@ struct ContentView: View {
                 .font(.title)
             Form {
                 Section {
-                    TextField(text: $inputValue, prompt: Text("Unit to convert")) {
-                        Text("Value to convert")
-                            .font(.title3)
-                            .bold()
-                    }
+                    TextField(
+                        "Value to convert",
+                        value: $inputValue,
+                        format: .number
+                    )
+                        .keyboardType(.decimalPad)
                     UnitPickerView(selectedUnit: $selectedInput)
                 } header: {
                     Text("Input")
@@ -58,7 +53,7 @@ struct ContentView: View {
                 }
                 Section {
                     UnitPickerView(selectedUnit: $selectedOutput)
-                    Text("\(inputValue) \(selectedInput.rawValue) > \(String(format: "%.2f", outputValue)) \(selectedOutput.rawValue)")
+                    Text("\(String(format: "%.2f", inputValue ?? 0.0)) \(selectedInput.rawValue) > \(String(format: "%.2f", outputValue)) \(selectedOutput.rawValue)")
                         .font(.title3)
                         .bold()
                 } header: {
