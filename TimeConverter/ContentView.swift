@@ -44,8 +44,7 @@ struct ContentView: View {
                         "Value to convert",
                         value: $inputValue,
                         format: .number
-                    )
-                        .keyboardType(.decimalPad)
+                    ).keyboardType(.decimalPad)
                     UnitPickerView(selectedUnit: $selectedInput)
                 } header: {
                     Text("Input")
